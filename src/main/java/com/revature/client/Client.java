@@ -1,6 +1,13 @@
 package com.revature.client;
 
-public class AppUI {
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.revature.model.Coffee;
+import com.revature.repository.CoffeeRepository;
+import com.revature.repository.CoffeeRepositoryImpl;
+
+public class Client {
 	
 	public static void loginPage() {
 		System.out.println("Welcome to Ben's Coffee shop! Where we have coffee that would keep even the dead awake."
@@ -18,6 +25,34 @@ public class AppUI {
 		System.out.println(
 				"The history of the Coffee shop began in Seattle, Washington. \nStarted before Starbucks, their coffee has the tastiest"
 						+ " and most caffeine content allowed by FDA for human consumption. \nGuaranteed to keep you awake with just one sip.");
+	}
+	
+	public static void intializeUI() {
+		CoffeeRepository coffeeRepository = new CoffeeRepositoryImpl();
+		ArrayList<Coffee> coffeeList = coffeeRepository.getCoffeeList();
+
+		Scanner scanner = new Scanner(System.in);
+
+		boolean isUserHere = true;
+		while (isUserHere) {
+
+			int userAnswer = scanner.nextInt();
+
+			switch (userAnswer) {
+			case 1:
+				for (int i = 0; i < coffeeList.size(); i++) {
+					System.out.println(coffeeList.get(i));
+				}
+				break;
+			case 2:
+				historyOfCoffeeShop();
+				break;
+			case 3:
+				System.out.println("bye customer");
+				isUserHere = false;
+			}
+		}
+		scanner.close();
 	}
 
 }
