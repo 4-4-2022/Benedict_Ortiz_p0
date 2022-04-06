@@ -1,6 +1,6 @@
 package com.revature.model;
 
-public class Customer {
+public class Customer extends User{
 	/*
 	 * think of customers with multiple accounts as this: bank user with multiple accounts, like checking and saving.
 	 * This of customer class as the parent class.

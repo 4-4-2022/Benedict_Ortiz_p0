@@ -1,6 +1,6 @@
 package com.revature.model;
 
-public class Employee {
+public class Employee extends User{
 	
 	private String employeeName;
 	private int employeeAge;

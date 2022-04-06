@@ -7,7 +7,7 @@ public class Driver {
 	public static void main(String[] args) {
 
 		Client.welcomeMessage();
-		Client.intializeUI();
+		Client.intializeCoffeeShopUI();
 	}
 
 }

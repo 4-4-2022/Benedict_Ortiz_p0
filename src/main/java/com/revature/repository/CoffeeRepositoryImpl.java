@@ -20,4 +20,10 @@ public class CoffeeRepositoryImpl implements CoffeeRepository{
 		return coffeeList;
 	}
 
+	public void printCoffeeList() {
+		for (int i = 0; i < coffeeList.size(); i++) {
+			System.out.println(coffeeList.get(i));
+		}
+	}
+
 }

@@ -9,10 +9,14 @@ import com.revature.repository.CoffeeRepositoryImpl;
 
 public class Client {
 	
+	
 	public static void loginPage() {
-		System.out.println("Welcome to Ben's Coffee shop! Where we have coffee that would keep even the dead awake."
-				+ "\n 1. View the coffee menu" + "\n 2. View the history of Ben's Coffee shop."
-				+ "\n 3. Exit the coffee shop.");
+		System.out.println("Welcome to the login page. Please make a selection."
+				+ "\n 1. Sign in" + "\n 2. Register");
+	}
+	
+	public static void coffeeShopPage() {
+		//where you show the selection of coffees you can buy
 	}
 
 	public static void welcomeMessage() {
@@ -27,9 +31,12 @@ public class Client {
 						+ " and most caffeine content allowed by FDA for human consumption. \nGuaranteed to keep you awake with just one sip.");
 	}
 	
-	public static void intializeUI() {
+	public static void initializeLoginPageUI() {
+		loginPage();
+	}
+	
+	public static void intializeCoffeeShopUI() {
 		CoffeeRepository coffeeRepository = new CoffeeRepositoryImpl();
-		ArrayList<Coffee> coffeeList = coffeeRepository.getCoffeeList();
 
 		Scanner scanner = new Scanner(System.in);
 
@@ -40,9 +47,7 @@ public class Client {
 
 			switch (userAnswer) {
 			case 1:
-				for (int i = 0; i < coffeeList.size(); i++) {
-					System.out.println(coffeeList.get(i));
-				}
+				coffeeRepository.printCoffeeList();
 				break;
 			case 2:
 				historyOfCoffeeShop();
@@ -54,5 +59,7 @@ public class Client {
 		}
 		scanner.close();
 	}
+	
+	
 
 }
