@@ -24,8 +24,7 @@ public class Driver {
 
 			switch (userAnswer) {
 			case 1:
-//				System.out.println("this is where the menu would be");
-				for(int i = 0; i < coffeeList.size(); i++) {
+				for (int i = 0; i < coffeeList.size(); i++) {
 					System.out.println(coffeeList.get(i));
 				}
 				break;

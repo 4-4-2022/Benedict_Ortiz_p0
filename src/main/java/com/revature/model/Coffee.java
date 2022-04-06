@@ -17,7 +17,6 @@ public class Coffee {
 		return coffeeFlavor;
 	}
 
-
 	public void setCoffeeFlavor(String coffeeFlavor) {
 		this.coffeeFlavor = coffeeFlavor;
 	}
@@ -37,7 +36,7 @@ public class Coffee {
 	public void setCoffeeCafe(String coffeeCafe) {
 		this.coffeeCafe = coffeeCafe;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Coffee [coffeeFlavor=" + coffeeFlavor + ", coffeeCost=" + coffeeCost + ", coffeeCafe=" + coffeeCafe
