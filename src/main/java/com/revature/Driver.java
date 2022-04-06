@@ -6,13 +6,14 @@ import java.util.Scanner;
 import com.revature.client.AppUI;
 import com.revature.model.Coffee;
 import com.revature.repository.CoffeeRepository;
+import com.revature.repository.CoffeeRepositoryImpl;
 
 public class Driver {
 
 	public static void main(String[] args) {
 
 		AppUI.welcomeMessage();
-		CoffeeRepository coffeeRepository = new CoffeeRepository();
+		CoffeeRepository coffeeRepository = new CoffeeRepositoryImpl();
 		ArrayList<Coffee> coffeeList = coffeeRepository.getCoffeeList();
 
 		Scanner scanner = new Scanner(System.in);
