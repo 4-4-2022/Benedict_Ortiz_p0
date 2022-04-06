@@ -6,7 +6,7 @@ import com.revature.model.Coffee;
 
 public class CoffeeRepository {
 
-	private static ArrayList<Coffee> coffeeList = new ArrayList<Coffee>();
+	private ArrayList<Coffee> coffeeList = new ArrayList<Coffee>();
 
 	public CoffeeRepository() {
 		super();
