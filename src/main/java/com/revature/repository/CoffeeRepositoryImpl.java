@@ -1,11 +1,11 @@
 package com.revature.repository;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import com.revature.model.Coffee;
 
-public class CoffeeRepositoryImpl implements CoffeeRepository{
-	
+public class CoffeeRepositoryImpl implements CoffeeRepository {
+
 	private ArrayList<Coffee> coffeeList = new ArrayList<Coffee>();
 
 	public CoffeeRepositoryImpl() {
@@ -22,8 +22,31 @@ public class CoffeeRepositoryImpl implements CoffeeRepository{
 	}
 
 	public void printCoffeeList() {
+		System.out.println("Pick the coffee you want");
 		for (int i = 0; i < coffeeList.size(); i++) {
-			System.out.println(coffeeList.get(i));
+			System.out.println( i+1 + " " + coffeeList.get(i));
+		}
+	}
+	
+	public void pickCoffee() {
+		Scanner scanner = new Scanner(System.in);
+		
+		int pickCoffeeAnswer = scanner.nextInt();
+		
+		switch (pickCoffeeAnswer) {
+		case 1:
+			System.out.println(coffeeList.get(pickCoffeeAnswer-1));
+			break;
+		case 2:
+			System.out.println(coffeeList.get(pickCoffeeAnswer-1));
+			break;
+		case 3:
+			System.out.println(coffeeList.get(pickCoffeeAnswer-1));
+			break;
+		case 4:
+			System.out.println(coffeeList.get(pickCoffeeAnswer-1));
+			break;
+
 		}
 	}
 

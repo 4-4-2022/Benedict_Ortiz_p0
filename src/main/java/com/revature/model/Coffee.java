@@ -39,8 +39,7 @@ public class Coffee {
 
 	@Override
 	public String toString() {
-		return "Coffee [coffeeFlavor=" + coffeeFlavor + ", coffeeCost=" + coffeeCost + ", coffeeCafe=" + coffeeCafe
-				+ "]";
+		return coffeeFlavor + " " + coffeeCost;
 	}
 
 }

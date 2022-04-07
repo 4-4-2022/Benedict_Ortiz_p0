@@ -28,11 +28,11 @@ public class User {
 	private int userAge;
 	private String userAddress;
 	private int userDOB;
-	
-	
-	
+	private int wallet;
+
 	/**
 	 * This constructor will be used to login
+	 * 
 	 * @param userName
 	 * @param userPassword
 	 * 
@@ -110,12 +110,95 @@ public class User {
 	public void setUserDOB(int userDOB) {
 		this.userDOB = userDOB;
 	}
+	
+
+	public int getWallet() {
+		return wallet;
+	}
+
+	public void setWallet(int wallet) {
+		this.wallet = wallet;
+	}
 
 	@Override
 	public String toString() {
 		return "User [accountList=" + accountList + ", userRealName=" + userRealName + ", userName=" + userName
 				+ ", userPassword=" + userPassword + ", userAge=" + userAge + ", userAddress=" + userAddress
 				+ ", userDOB=" + userDOB + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((accountList == null) ? 0 : accountList.hashCode());
+		result = prime * result + ((userAddress == null) ? 0 : userAddress.hashCode());
+		result = prime * result + userAge;
+		result = prime * result + userDOB;
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+		result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
+		result = prime * result + ((userRealName == null) ? 0 : userRealName.hashCode());
+		result = prime * result + wallet;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		User other = (User) obj;
+		if (accountList == null) {
+			if (other.accountList != null) {
+				return false;
+			}
+		} else if (!accountList.equals(other.accountList)) {
+			return false;
+		}
+		if (userAddress == null) {
+			if (other.userAddress != null) {
+				return false;
+			}
+		} else if (!userAddress.equals(other.userAddress)) {
+			return false;
+		}
+		if (userAge != other.userAge) {
+			return false;
+		}
+		if (userDOB != other.userDOB) {
+			return false;
+		}
+		if (userName == null) {
+			if (other.userName != null) {
+				return false;
+			}
+		} else if (!userName.equals(other.userName)) {
+			return false;
+		}
+		if (userPassword == null) {
+			if (other.userPassword != null) {
+				return false;
+			}
+		} else if (!userPassword.equals(other.userPassword)) {
+			return false;
+		}
+		if (userRealName == null) {
+			if (other.userRealName != null) {
+				return false;
+			}
+		} else if (!userRealName.equals(other.userRealName)) {
+			return false;
+		}
+		if (wallet != other.wallet) {
+			return false;
+		}
+		return true;
 	}
 	
 	

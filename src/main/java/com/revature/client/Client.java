@@ -7,16 +7,26 @@ import com.revature.model.User;
 import com.revature.repository.CoffeeRepository;
 import com.revature.repository.CoffeeRepositoryImpl;
 
+/*
+ * I'm gonna have to redo this whole thing again.
+ */
 public class Client {
-	
+
 	public static void registerPage() {
-		System.out.println("Welcome to the register page. Enter a username you want to use and password you want to use."
-				+ "If you want to go back to the login page enter 1.");
+		System.out
+				.println("Welcome to the register page. Enter a username you want to use and password you want to use."
+						+ " If you want to go back to the login page enter 1.");
+	}
+	
+	public static void signInPage() {
+		System.out.println("Welcome to the sign in page. Please sign in with your username and password. If you want to go back to the login page enter 1");
 	}
 
 	public static void loginPage() {
-		System.out.println("Welcome to the login page. Please make a selection." + "\n 1. Sign in" + "\n 2. Register"
-				+ "\n 3. Return to main page");
+		System.out.println("Welcome to the login page. Please make a selection"
+				+ "\n 1. Sign in"
+				+ "\n 2. Register"
+				+ "\n 3. Go back to main page");
 	}
 
 	public static void coffeeShopPage() {
@@ -36,7 +46,32 @@ public class Client {
 	}
 
 	public static void initializeSigninPageUI() {
-		System.out.println("where sign in would happen");
+		
+		ArrayList<User> userList = User.getUserList();
+		Scanner scanner = new Scanner(System.in);
+		
+		boolean isUserInSignInPage = true;
+		while(isUserInSignInPage) {
+			
+			signInPage();
+			
+			System.out.println("UserName: ");
+			String signInPageUserAnswer = scanner.nextLine();
+			if (signInPageUserAnswer.equals("1")) {
+				break;
+			}
+			String signInPageUserPW = scanner.nextLine();
+			
+			if(userList.contains(new User(signInPageUserAnswer,signInPageUserPW))) {//this probhably can be done better
+				System.out.println("Success. You are logged in.");
+				
+			} else {
+				System.out.println("User not found or password incorrect. Try again");
+			}
+			
+			System.out.println(userList);
+			
+		}
 	}
 
 	public static void initializeRegisterPageUI() {
@@ -44,32 +79,29 @@ public class Client {
 
 		boolean isUserInRegisterPage = true;
 		while (isUserInRegisterPage) {
-			
+
 			registerPage();
-			
+
+			System.out.print("Username: ");
 			String registerPageUserAnswer = scanner.nextLine();
-			
-			if(registerPageUserAnswer.equals("1")) {
+
+			if (registerPageUserAnswer.equals("1")) {
 				break;
 			}
-			
+
+			System.out.print("Password: ");
 			String registerPageUserPW = scanner.nextLine();
-			
+
 			User.addToUserList(new User(registerPageUserAnswer, registerPageUserPW));
-			
-			System.out.println(registerPageUserAnswer);
-			System.out.println(registerPageUserPW);
-			
+
 			ArrayList<User> temp = User.getUserList();
 			System.out.println(temp.toString());
-			
-			
-			
 
 		}
 	}
 
 	public static void initializeLoginPageUI() {
+
 
 		Scanner scanner = new Scanner(System.in);
 
@@ -102,7 +134,7 @@ public class Client {
 		Scanner scanner = new Scanner(System.in);
 
 		boolean isUserHere = true;
-		boolean isLoggedIn = false;
+		boolean isLoggedIn = true;
 
 		while (isUserHere) {
 
@@ -112,7 +144,14 @@ public class Client {
 
 			switch (userAnswer) {
 			case 1:
+				
 				coffeeRepository.printCoffeeList();
+				if(isLoggedIn == true) {
+					coffeeRepository.pickCoffee();
+				} else {
+					System.out.println("Login or Register first before buying a coffee");
+				}
+				
 				break;
 			case 2:
 				historyOfCoffeeShop();

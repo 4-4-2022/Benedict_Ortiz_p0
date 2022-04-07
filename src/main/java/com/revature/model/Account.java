@@ -5,6 +5,11 @@ package com.revature.model;
  */
 public class Account extends User{
 	
+	public Account(String userName, String userPassword) {
+		super(userName, userPassword);
+		// TODO Auto-generated constructor stub
+	}
+
 	private boolean notOriginalUser;
 	
 
