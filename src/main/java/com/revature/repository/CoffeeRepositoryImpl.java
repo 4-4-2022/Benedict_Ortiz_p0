@@ -14,6 +14,7 @@ public class CoffeeRepositoryImpl implements CoffeeRepository{
 		coffeeList.add(new Coffee("Macchiato", 12, "Ben's Cafe"));
 		coffeeList.add(new Coffee("Cappucino", 10, "Ben's Cafe"));
 		coffeeList.add(new Coffee("Black", 7, "Ben's Cafe"));
+		coffeeList.add(new Coffee("The Traitor", 20, "Ben's Cafe"));
 	}
 
 	public ArrayList<Coffee> getCoffeeList() {
