@@ -370,8 +370,8 @@ public class Driver {
 
 	public static void main(String[] args) {
 		System.out.println("hi");
-//		CustomerListRepository.getCustomerList().add(new Customer("ben", "pog"));
-//		CustomerListRepository.getCustomerList().add(new Customer("tanya", "pog"));
+//		CustomerListRepository.getCustomerList().add(new Customer("ben", "password"));
+//		CustomerListRepository.getCustomerList().add(new Customer("other", "password"));
 
 		Scanner scanner = new Scanner(System.in);
 
