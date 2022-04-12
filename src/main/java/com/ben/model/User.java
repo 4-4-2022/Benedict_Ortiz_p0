@@ -5,7 +5,6 @@ public class User {
 	private String userName;
 	private boolean isMainUser = true;
 	
-	
 	/**
 	 * @param userName
 	 * @param userPassword

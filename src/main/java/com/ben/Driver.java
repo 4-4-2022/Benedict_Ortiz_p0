@@ -5,28 +5,194 @@ import java.util.Scanner;
 
 import com.ben.model.Account;
 import com.ben.model.Customer;
+import com.ben.model.Employee;
 import com.ben.model.User;
 import com.ben.repository.CustomerListRepository;
+import com.ben.repository.EmployeeListRepository;
 
 public class Driver {
 	
-	static CustomerListRepository customerListRepository = new CustomerListRepository();
+	
 	
 	public static void userMainPage() {
-		System.out.println("you are in the main page of the user, you can add funds buy stuff here");
+		System.out.println("you are in the main page of the user, you can buy stuff here");
+	}
+	
+	public static void viewCustomerInfoByEmployee(CustomerListRepository customerListRepository) {
+		
+		for(Customer c: customerListRepository.getCustomerList()) {
+			System.out.println("customer: " + c);
+			for(Account a: c.getAccountList()) {
+				System.out.println("accounts: " + a.getUserList());
+				System.out.println("funds: " + a.getFunds());
+				for(User u: a.getUserList()) {
+					System.out.println("user's name " + u.getUserName());
+				}
+			}
+		}
+	}
+	
+	public static void employeePage(CustomerListRepository customerListRepository) {
+		System.out.println("employees see all customers");
+		
+		Scanner scanner = new Scanner(System.in);
+
+		boolean employeeInEmployeePage = true;
+		while (employeeInEmployeePage) {
+			System.out.println("type 1 to view customer info type 2 to cancel account of a customer");
+			
+			int employeePageAnswer = scanner.nextInt();
+			switch(employeePageAnswer) {
+			case 1:
+				viewCustomerInfoByEmployee(customerListRepository);
+				break;
+			case 2:
+				System.out.println("you cancel accounts of customers here");
+				break;
+			case 3:
+				System.out.println("leaving employee main page");
+				employeeInEmployeePage = false;
+				break;
+			}
+			
+			
+		}
+
+		
+	}
+	
+	public static void loginPageEmployee(EmployeeListRepository employeeListRepository, CustomerListRepository customerListRepository) {
+		
+
+		for(Employee e: employeeListRepository.getEmployeeList()) {
+			System.out.println(e);
+			
+		}
+		
+		System.out.println("test");
+
+		Scanner scanner = new Scanner(System.in);
+
+		boolean customerInLoginPage = true;
+		while (customerInLoginPage) {
+			System.out.println("welcome to the login FOR EMPLOYEES page, login with your username and password. type 1 to exit");
+			String loginName = scanner.nextLine();
+			if (loginName.equals("1")) {
+				customerInLoginPage = false;
+				break;
+			}
+				
+			String loginPassword = scanner.nextLine();
+
+			System.out.println(loginName + loginPassword);
+			
+
+			if (!employeeListRepository.getEmployeeList().isEmpty()) {
+				for (Employee e : employeeListRepository.getEmployeeList()) {
+					if (e.getEmployeeName().equalsIgnoreCase(loginName) && e.getEmployeePassword().equalsIgnoreCase(loginPassword)) {
+						System.out.println("employee found. this is where employee stuff happens ");
+						employeePage(customerListRepository);
+						return;
+					}
+				}
+			} else {
+				System.out.println("list is empty, but should say user doesn't exist or password wrong");
+			}
+		}
+
 	}
 	
 	
 	
-	public static void accountFundManagePage(Customer customer) {
+	public static void accountFundManagePageTransfer(Customer customer) {
 		
 		Scanner scanner = new Scanner(System.in);
 		
-		boolean isManagingAccounts = true;
-		while(isManagingAccounts) {
-
-			System.out.println("where account fund modication page would go, pick the account whose funds you want to modify ");
-			for(Account a : customer.getAccountList()) {
+		boolean isManagingAccountsAddRemove = true;
+		while(isManagingAccountsAddRemove) {
+			for(Account account : customer.getAccountList()) {
+				System.out.println(account);
+			}
+			System.out.println("Enter the two accounts you want to transfer funds. The first fund, then the second fund to transfer to, type 1 to exit");
+			String firstAccount = scanner.nextLine();
+			if(firstAccount.equals("1")) {
+				isManagingAccountsAddRemove = false;
+				break;
+			}
+			String secondAccount = scanner.nextLine();
+			
+			System.out.println("you are transferring from " + firstAccount + " to " + secondAccount);
+			System.out.println("how much do you want to transer?");
+			
+			int transferAmount = scanner.nextInt();
+			
+			for(Account a: customer.getAccountList()) {
+				if(a.getAccountName().equalsIgnoreCase(firstAccount)) {
+					a.setFunds(a.getFunds() - transferAmount);
+					break;
+				}
+			}
+			
+			for(Account a: customer.getAccountList()) {
+				if(a.getAccountName().equalsIgnoreCase(secondAccount)) {
+					a.setFunds(a.getFunds() + transferAmount);
+					break;
+				}
+			}
+//			
+//			for(Account a: customer.getAccountList()) {
+//				System.out.println(a);
+//			}
+//			
+			//eat new line from pressing enter after entering transfer amount
+			scanner.nextLine();
+			
+		}
+		
+	}
+	
+	public static void addRemoveFundsPage(Account account) {
+		Scanner scanner = new Scanner(System.in);
+		
+		boolean isManagingAccountsAddRemove = true;
+		while(isManagingAccountsAddRemove) {
+			System.out.println("this is how many funds " + account.getAccountName() + " has: "+ account.getFunds());
+			System.out.println("type 1 to add funds type 2 to remove funds type 3 to exit");
+			
+			int addRemoveFundsPageAnswer = scanner.nextInt();
+			switch(addRemoveFundsPageAnswer) {
+			case 1:
+				System.out.println("how much do you want to add?");
+				int addFunds = scanner.nextInt();
+				account.setFunds(account.getFunds() + addFunds);
+				break;
+			case 2:
+				System.out.println("how much do you want to add?");
+				int removeFunds = scanner.nextInt();
+				account.setFunds(account.getFunds() - removeFunds);
+				break;
+			case 3:
+				System.out.println("leaving the addremovefundspage");
+				isManagingAccountsAddRemove = false;
+				break;
+			}
+		
+			
+		}
+	}
+	
+	public static void accountFundManagePageAddRemove(Customer customer) {
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		boolean isManagingAccountsAddRemove = true;
+		while(isManagingAccountsAddRemove) {
+			
+			System.out.println("enter the account you want to add or remove funds from");
+			/*
+			 * just prints accounts of users
+			 */
+			for(Account a: customer.getAccountList()) {
 				System.out.println(a);
 			}
 			
@@ -39,11 +205,55 @@ public class Driver {
 			for(Account a : customer.getAccountList()) {
 				if(a.getAccountName().equalsIgnoreCase(accountChoiceAnswer)) {
 					System.out.println("account fund ");
+					System.out.println("the account is " + a);
+					addRemoveFundsPage(a);
 				}
 			}
+			
+			isManagingAccountsAddRemove = false;
+		}
+		
+		
+		
+		
+	}
+	
+	
+	public static void accountFundManagePage(Customer customer) {
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		boolean isManagingAccounts = true;
+		while(isManagingAccounts) {
+
+			System.out.println("where account fund modication page would go, type 1 to add and remove funds in an account, type 2 to transfer funds between accounts, type 3 to exti");
+			/*
+			 * for loop just prints accounts of the chosen customer
+			 */
+			for(Account a : customer.getAccountList()) {
+				System.out.println(a);
+			}
+			
+			int accountFundManagePageAnswer = scanner.nextInt();
+			
+			switch(accountFundManagePageAnswer) {
+			case 1:
+				accountFundManagePageAddRemove(customer);
+				break;
+			case 2:
+				accountFundManagePageTransfer(customer);
+				break;
+			case 3:
+				System.out.println("exit");
+				isManagingAccounts = false;
+				break;
+			}
+			
 
 			
 		}
+		
+		System.out.println("left the while loop");
 		
 		
 	}
@@ -152,7 +362,7 @@ public class Driver {
 			
 			/*
 			 * TODO add condition where if it's an account manager, goes to a page that can add funds, modify funds etc.
-			 * not sure if this is needed. going to do this in another page
+			 * not sure if this is needed. going to do this in another way. 
 			 */
 			
 			
@@ -216,15 +426,14 @@ public class Driver {
 
 	public static void accountMainPage(Customer customer) {
 		
-		System.out.println("heres the list of accounts this customer has");
-		for(Account a : customer.getAccountList()) {
-			System.out.println(a);
-		}
-
 		Scanner scanner = new Scanner(System.in);
 
 		boolean customerInAccountsPage = true;
 		while(customerInAccountsPage) {
+//			System.out.println("heres the list of accounts this customer has");
+//			for(Account a : customer.getAccountList()) {
+//				System.out.println(a);
+//			}
 			System.out.println("you've logged in, "+ customer.getCustomerName() +" you're in the account login page now, type 1 to login to an account, type 2 to register a new account, type 3 to modfiy funds between accounts, type 4 to exit");
 //			System.out.println("printing the accountList of the user");
 //			//------------- make this separate
@@ -292,13 +501,20 @@ public class Driver {
 	
 
 
-	public static void loginPage() {
+	public static void loginPage(CustomerListRepository customerListRepository) {
 		
-		//TODO BUG for some reason, customerListRepository.getCustomerList() is doublinng everytime
+		/* FIXED
+		 * BUG for some reason, customerListRepository.getCustomerList() is doublinng everytime
+		 * SOLUTION: CustomerListRepository customerListRepository had to be inside while loop in main. Not outside. Or else
+		 * a new CustomerListRepository would keep getting created 
+		 */
 //		System.out.println(customerListRepository.getCustomerList());
 		for(Customer c: customerListRepository.getCustomerList()) {
 			System.out.println(c);
+			
 		}
+		
+		System.out.println("test");
 
 		Scanner scanner = new Scanner(System.in);
 
@@ -337,7 +553,7 @@ public class Driver {
 
 	}
 
-	public static void registerPage() {
+	public static void registerPage(CustomerListRepository customerListRepository) {
 		
 		for(Customer c: customerListRepository.getCustomerList()) {
 			System.out.println(c);
@@ -370,30 +586,39 @@ public class Driver {
 
 	public static void main(String[] args) {
 		System.out.println("hi");
-//		CustomerListRepository.getCustomerList().add(new Customer("ben", "password"));
-//		CustomerListRepository.getCustomerList().add(new Customer("other", "password"));
 
 		Scanner scanner = new Scanner(System.in);
 
 		boolean customerInMainPage = true;
 		while (customerInMainPage) {
-			System.out.println("welcome to the main customer page enter 1 to login, 2 to register, 3 to exit, 4 to print customerList");
+			/*
+			 * reason customerListRepository kept doubling was because everytime main ran, it would create a new CustomerListRepository Object.
+			 * needs to be in while loop so only one instance at a time
+			 */
+			CustomerListRepository customerListRepository = new CustomerListRepository();
+			EmployeeListRepository employeeListRepository = new EmployeeListRepository();
+			
+			System.out.println("welcome to the main customer page enter 1 to login, 2 to register, 3 to exit, 4 to print customerList, 5 for employee login");
 			int mainPageAnswer = scanner.nextInt();
 
 			switch (mainPageAnswer) {
 			case 1:
-				loginPage();
+				loginPage(customerListRepository);
 				break;
 			case 2:
-				registerPage();
+				registerPage(customerListRepository);
 				break;
 			case 3:
 				System.out.println("you typed 3, exit now");
 				customerInMainPage = false;
 				break;
-
 			case 4:
-				System.out.println(customerListRepository.getCustomerList());
+				for(Customer customer: customerListRepository.getCustomerList()) {
+					System.out.println(customer);
+				}
+			case 5:
+				loginPageEmployee(employeeListRepository, customerListRepository);
+				
 			}
 		}
 

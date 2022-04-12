@@ -2,6 +2,9 @@ package com.ben.model;
 
 import java.util.ArrayList;
 
+/*
+ * customer has accounts
+ */
 public class Customer {
 	
 	private String customerName;
@@ -13,11 +16,13 @@ public class Customer {
 	 * @param customerPassword
 	 */
 	public Customer(String customerName, String customerPassword) {
-		super();
+//		super();
 		this.customerName = customerName;
 		this.customerPassword = customerPassword;
-		accountList.add(new Account("benAccount", "benAccountPw", true));
-		accountList.add(new Account("otherAccount", "otherAccountPw", false));
+		this.accountList.add(new Account("benAccount", "benAccountPw", true));
+		this.accountList.add(new Account("otherAccount", "otherAccountPw", false));
+		this.accountList.add(new Account("jerryAccount", "jerryAccountPw", true));
+		this.accountList.add(new Account("arnoldAccount", "arnoldAccountPw", false));
 	}
 	public String getCustomerName() {
 		return customerName;
