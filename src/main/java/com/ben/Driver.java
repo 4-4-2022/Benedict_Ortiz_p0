@@ -17,22 +17,7 @@ public class Driver {
 	public static void userMainPage() {
 		System.out.println("you are in the main page of the user, you can buy stuff here");
 	}
-	
-	public static void viewCustomerInfoByEmployee(CustomerListRepository customerListRepository) {
-		
-		for(Customer c: customerListRepository.getCustomerList()) {
-			System.out.println("customer: " + c);
-			for(Account a: c.getAccountList()) {
-				System.out.println("accounts: " + a.getUserList());
-				System.out.println("funds: " + a.getFunds());
-				for(User u: a.getUserList()) {
-					System.out.println("user's name " + u.getUserName());
-				}
-			}
-		}
-	}
-	
-	
+
 	public static void employeePage(CustomerListRepository customerListRepository) {
 		System.out.println("employees see all customers");
 		
