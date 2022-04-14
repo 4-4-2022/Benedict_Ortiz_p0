@@ -3,12 +3,14 @@ package com.ben;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.ben.client.AppUI;
 import com.ben.model.Account;
 import com.ben.model.Customer;
 import com.ben.model.Employee;
 import com.ben.model.User;
 import com.ben.repository.CustomerListRepository;
 import com.ben.repository.EmployeeListRepository;
+import com.ben.service.CustomerService;
 
 public class Driver {
 	
@@ -17,7 +19,22 @@ public class Driver {
 	public static void userMainPage() {
 		System.out.println("you are in the main page of the user, you can buy stuff here");
 	}
-
+	
+	public static void viewCustomerInfoByEmployee(CustomerListRepository customerListRepository) {
+		
+		for(Customer c: customerListRepository.getCustomerList()) {
+			System.out.println("customer: " + c);
+			for(Account a: c.getAccountList()) {
+				System.out.println("accounts: " + a.getUserList());
+				System.out.println("funds: " + a.getFunds());
+				for(User u: a.getUserList()) {
+					System.out.println("user's name " + u.getUserName());
+				}
+			}
+		}
+	}
+	
+	
 	public static void employeePage(CustomerListRepository customerListRepository) {
 		System.out.println("employees see all customers");
 		
@@ -573,6 +590,8 @@ public class Driver {
 	public static void main(String[] args) {
 		System.out.println("hi");
 
+		CustomerService customerService = new CustomerService();
+		
 		Scanner scanner = new Scanner(System.in);
 
 		boolean customerInMainPage = true;
@@ -584,14 +603,21 @@ public class Driver {
 			CustomerListRepository customerListRepository = new CustomerListRepository();
 			EmployeeListRepository employeeListRepository = new EmployeeListRepository();
 			
-			System.out.println("welcome to the main customer page enter 1 to login, 2 to register, 3 to exit, 4 to print customerList, 5 for employee login");
-			int mainPageAnswer = scanner.nextInt();
+			AppUI.mainCustomerPage();
+			int mainPageAnswer = 0;
+			mainPageAnswer = AppUI.handleUserSelection(mainPageAnswer, scanner);
+			/*
+			 * scanner.nextLine() needed so it doesn't loop foerver.
+			 */
+			scanner.nextLine();
 
 			switch (mainPageAnswer) {
 			case 1:
 				loginPage(customerListRepository);
 				break;
 			case 2:
+				//add customer here
+				Customer newCustomer = AppUI.getCustomerInformation(scanner);
 				registerPage(customerListRepository);
 				break;
 			case 3:
@@ -602,8 +628,10 @@ public class Driver {
 				for(Customer customer: customerListRepository.getCustomerList()) {
 					System.out.println(customer);
 				}
+				break;
 			case 5:
 				loginPageEmployee(employeeListRepository, customerListRepository);
+				break;
 				
 			}
 		}

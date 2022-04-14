@@ -7,10 +7,19 @@ import java.util.ArrayList;
  */
 public class Customer {
 	
+	private int customerID;
 	private String customerName;
 	private String customerPassword;
 	private ArrayList<Account> accountList = new ArrayList<Account>();
 	
+	
+	
+	/**
+	 * 
+	 */
+	public Customer() {
+		super();
+	}
 	/**
 	 * @param customerName
 	 * @param customerPassword
@@ -23,6 +32,14 @@ public class Customer {
 		this.accountList.add(new Account("otherAccount", "otherAccountPw", false));
 		this.accountList.add(new Account("jerryAccount", "jerryAccountPw", true));
 		this.accountList.add(new Account("arnoldAccount", "arnoldAccountPw", false));
+	}
+	
+	
+	public int getCustomerID() {
+		return customerID;
+	}
+	public void setCustomerID(int customerID) {
+		this.customerID = customerID;
 	}
 	public String getCustomerName() {
 		return customerName;
@@ -44,9 +61,11 @@ public class Customer {
 	}
 	@Override
 	public String toString() {
-		return "Customer [customerName=" + customerName + ", customerPassword=" + customerPassword + ", accountList="
-				+ accountList + "]";
+		return "Customer [customerID=" + customerID + ", customerName=" + customerName + ", customerPassword="
+				+ customerPassword + ", accountList=" + accountList + "]";
 	}
+	
+	
 	
 	
 }
