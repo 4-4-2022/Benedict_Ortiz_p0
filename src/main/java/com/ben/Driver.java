@@ -9,6 +9,8 @@ import com.ben.model.Customer;
 import com.ben.model.Employee;
 import com.ben.model.User;
 import com.ben.repository.CustomerListRepository;
+import com.ben.repository.CustomerRepository;
+import com.ben.repository.CustomerRepositoryImpl;
 import com.ben.repository.EmployeeListRepository;
 import com.ben.service.CustomerService;
 
@@ -603,6 +605,9 @@ public class Driver {
 			CustomerListRepository customerListRepository = new CustomerListRepository();
 			EmployeeListRepository employeeListRepository = new EmployeeListRepository();
 			
+			CustomerRepositoryImpl customerRepositoryImpl = new CustomerRepositoryImpl();
+			
+			
 			AppUI.mainCustomerPage();
 			int mainPageAnswer = 0;
 			mainPageAnswer = AppUI.handleUserSelection(mainPageAnswer, scanner);
@@ -616,7 +621,7 @@ public class Driver {
 				loginPage(customerListRepository);
 				break;
 			case 2:
-				//add customer here
+				//add customer here not done yet
 				Customer newCustomer = AppUI.getCustomerInformation(scanner);
 				registerPage(customerListRepository);
 				break;
@@ -625,9 +630,18 @@ public class Driver {
 				customerInMainPage = false;
 				break;
 			case 4:
-				for(Customer customer: customerListRepository.getCustomerList()) {
+				
+				//impl works
+//				for(Customer customer: customerRepositoryImpl.read()) {
+//					System.out.println(customer);
+//				}
+					
+//				//service work?
+				for(Customer customer: customerService.read()) {
 					System.out.println(customer);
 				}
+				System.out.println("sdf");
+//				customerService.read();
 				break;
 			case 5:
 				loginPageEmployee(employeeListRepository, customerListRepository);

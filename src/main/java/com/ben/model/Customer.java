@@ -20,6 +20,21 @@ public class Customer {
 	public Customer() {
 		super();
 	}
+	
+	
+	/**
+	 * @param customerID
+	 * @param customerName
+	 * @param customerPassword
+	 */
+	public Customer(int customerID, String customerName, String customerPassword) {
+		super();
+		this.customerID = customerID;
+		this.customerName = customerName;
+		this.customerPassword = customerPassword;
+	}
+
+
 	/**
 	 * @param customerName
 	 * @param customerPassword
