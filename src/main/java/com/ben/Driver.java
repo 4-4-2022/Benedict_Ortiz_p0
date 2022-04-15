@@ -610,7 +610,7 @@ public class Driver {
 			
 			AppUI.mainCustomerPage();
 			int mainPageAnswer = 0;
-			mainPageAnswer = AppUI.handleUserSelection(mainPageAnswer, scanner);
+			mainPageAnswer = AppUI.handleUserSelectionNumberOnly(mainPageAnswer, scanner);
 			/*
 			 * scanner.nextLine() needed so it doesn't loop foerver.
 			 */
@@ -618,30 +618,22 @@ public class Driver {
 
 			switch (mainPageAnswer) {
 			case 1:
+				AppUI.loginPage();
+				Customer loginCustomer = AppUI.getCustomerInformation(scanner);
 				loginPage(customerListRepository);
 				break;
 			case 2:
-				//add customer here not done yet
+				AppUI.registerPage();
+				//TODO find a way to go back to the previous page
 				Customer newCustomer = AppUI.getCustomerInformation(scanner);
-				registerPage(customerListRepository);
+				customerService.create(newCustomer);
 				break;
 			case 3:
 				System.out.println("you typed 3, exit now");
 				customerInMainPage = false;
 				break;
 			case 4:
-				
-				//impl works
-//				for(Customer customer: customerRepositoryImpl.read()) {
-//					System.out.println(customer);
-//				}
-					
-//				//service work?
-				for(Customer customer: customerService.read()) {
-					System.out.println(customer);
-				}
-				System.out.println("sdf");
-//				customerService.read();
+				AppUI.printCustomerRepo(customerService);
 				break;
 			case 5:
 				loginPageEmployee(employeeListRepository, customerListRepository);

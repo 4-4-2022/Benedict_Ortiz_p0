@@ -9,7 +9,7 @@ public interface CustomerRepository {
 	
 	
 	public void create(Customer customer);
-	public ArrayList<Customer> read();
+	public ArrayList<Customer> save();
 	public void update(Customer customer);
 	public void delete(Customer customer);
 	

@@ -18,7 +18,18 @@ public class CustomerService {
 		super();
 		this.customerRepository = new CustomerRepositoryImpl();
 	}
+	
+	public void loginCustomer(Customer customer) {
+		ArrayList<Customer> customers = customerRepository.save();
+		
+	}
+	
+	
 
+	/**
+	 * this method will add a customer to the customer table in the db
+	 * @param customer
+	 */
 	public void create(Customer customer) {
 		this.customerRepository.create(customer);
 	}
@@ -30,9 +41,10 @@ public class CustomerService {
 	 * 
 	 * the CustomerService constructor created a new object of customerRepositoryImpl that allowed the customerRepository to use CustomerRepositoryImpl's methods
 	 * 
+	 * this method just reads from the db the customers table
 	 */
-	public ArrayList<Customer> read() {
-		return this.customerRepository.read();
+	public ArrayList<Customer> save() {
+		return this.customerRepository.save();
 	}
 
 }

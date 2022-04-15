@@ -16,35 +16,42 @@ public class CustomerRepositoryImpl implements CustomerRepository{
 
 	@Override
 	public void create(Customer customer) {
-		// TODO Auto-generated method stub
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		final String SQL = "insert into customers (customer_username, customer_password) values(?, ?)";
+		
+		try {
+			conn = ConnectionFactory.getConnection();
+			stmt = conn.prepareStatement(SQL);
+			stmt.setString(1, customer.getCustomerName());
+			stmt.setString(2, customer.getCustomerPassword());
+			stmt.execute();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			ResourceCloser.closeConnection(conn);
+			ResourceCloser.closeStatement(stmt);
+		}
+		
 		
 	}
 	
 	@Override
-	public ArrayList<Customer> read() {
-		// TODO Auto-generated method stub
+	public ArrayList<Customer> save() {
 		
 		ArrayList<Customer> customers = new ArrayList<Customer>();
 		
 		Connection conn = null;
-		/*
-		 * statment is for sql queries
-		 */
 		Statement stmt = null;
-		/*
-		 * resultset is for sql query results
-		 */
 		ResultSet set = null;
-		/*
-		 * convetion for final strings is to make it all capital letters
-		 */
 		
 		final String SQL = "select * from customers";
 		
 		try {
 			conn = ConnectionFactory.getConnection();
 			
-//			stmt = conn.prepareStatement(SQL);
 			stmt = conn.createStatement();
 			set = stmt.executeQuery(SQL);
 			
@@ -55,12 +62,7 @@ public class CustomerRepositoryImpl implements CustomerRepository{
 						set.getString(3)
 						));
 				
-//				String customer_username = set.getString("customer_username");
-//				System.out.println(customer_username);
-				
-//				System.out.println();
 			}
-//			System.out.println(customers);
 			
 			
 		}catch(SQLException e) {
