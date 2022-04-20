@@ -419,3 +419,109 @@
 06:33:42.438 [main] INFO  com.ben.client.AppUI - the welcome page of customer
 06:43:18.554 [main] INFO  com.ben.client.AppUI - the welcome page of customer
 07:06:24.359 [main] INFO  com.ben.client.AppUI - the welcome page of customer
+07:20:44.906 [main] INFO  com.ben.client.AppUI - the login page of customer
+07:20:46.199 [main] INFO  c.b.r.CustomerRepositoryImpl - sql query, select * from customers_table
+07:20:46.931 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:20:46.959 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:20:46.960 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:20:46.960 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:20:46.960 [main] INFO  c.b.r.CustomerRepositoryImpl - sql query, select * from customers_table
+07:20:47.158 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:20:47.172 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:20:47.172 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:20:47.172 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:20:47.173 [main] INFO  c.b.repository.WalletRepositoryImpl - sql query, select * from accounts_table where account_to_customer_id = customer.getCustomerID()
+07:20:47.369 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:20:47.383 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:20:47.383 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:20:47.383 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:21:11.957 [main] INFO  c.b.repository.ProfileRepositoryImpl - sql query, insert into profiles_table (profile_to_customers_id, profile_username, profile_isMainProfile) values(?, ?, ?)
+07:21:12.132 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:21:12.157 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:21:12.157 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:21:12.158 [main] INFO  c.b.repository.WalletRepositoryImpl - sql query, select * from accounts_table where account_to_customer_id = customer.getCustomerID()
+07:21:12.371 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:21:12.385 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:21:12.385 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:21:12.385 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:21:26.043 [main] INFO  c.b.repository.WalletRepositoryImpl - sql query, select * from accounts_table where account_to_customer_id = customer.getCustomerID()
+07:21:26.246 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:21:26.260 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:21:26.260 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:21:26.260 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:22:15.215 [main] INFO  com.ben.client.AppUI - the welcome page of customer
+07:22:17.859 [main] INFO  com.ben.client.AppUI - the login page of customer
+07:22:19.594 [main] INFO  c.b.r.CustomerRepositoryImpl - sql query, select * from customers_table
+07:22:20.343 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:22:20.373 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:22:20.373 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:22:20.374 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:22:20.374 [main] INFO  c.b.r.CustomerRepositoryImpl - sql query, select * from customers_table
+07:22:20.592 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:22:20.609 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:22:20.609 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:22:20.609 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:22:20.609 [main] INFO  c.b.repository.WalletRepositoryImpl - sql query, select * from accounts_table where account_to_customer_id = customer.getCustomerID()
+07:22:20.810 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:22:20.826 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:22:20.826 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:22:20.826 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:23:15.584 [main] INFO  com.ben.client.AppUI - the welcome page of customer
+07:23:18.886 [main] INFO  com.ben.client.AppUI - the login page of customer
+07:23:20.224 [main] INFO  c.b.r.CustomerRepositoryImpl - sql query, select * from customers_table
+07:23:20.951 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:23:20.978 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:23:20.979 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:23:20.979 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:23:20.979 [main] INFO  c.b.r.CustomerRepositoryImpl - sql query, select * from customers_table
+07:23:21.165 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:23:21.178 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:23:21.178 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:23:21.178 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:23:21.178 [main] INFO  c.b.repository.WalletRepositoryImpl - sql query, select * from accounts_table where account_to_customer_id = customer.getCustomerID()
+07:23:21.391 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:23:21.409 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:23:21.409 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:23:21.409 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:36:30.363 [main] INFO  com.ben.client.AppUI - the welcome page of customer
+07:36:31.752 [main] INFO  com.ben.client.AppUI - the login page of customer
+07:36:33.094 [main] INFO  c.b.r.CustomerRepositoryImpl - sql query, select * from customers_table
+07:36:33.840 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:36:33.870 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:36:33.871 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:36:33.871 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:36:33.871 [main] INFO  c.b.r.CustomerRepositoryImpl - sql query, select * from customers_table
+07:36:34.083 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:36:34.098 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:36:34.099 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:36:34.099 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:36:34.099 [main] INFO  c.b.repository.WalletRepositoryImpl - sql query, select * from accounts_table where account_to_customer_id = customer.getCustomerID()
+07:36:34.308 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:36:34.325 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:36:34.325 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:36:34.325 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:36:45.158 [main] INFO  c.b.repository.WalletRepositoryImpl - sql query, insert into profile_table_accounts_table values(?, ?);
+07:36:45.360 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:36:45.392 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:36:45.393 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:39:02.894 [main] INFO  com.ben.client.AppUI - the welcome page of customer
+07:39:05.106 [main] INFO  com.ben.client.AppUI - the login page of customer
+07:39:06.736 [main] INFO  c.b.r.CustomerRepositoryImpl - sql query, select * from customers_table
+07:39:07.467 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:39:07.496 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:39:07.496 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:39:07.496 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:39:07.496 [main] INFO  c.b.r.CustomerRepositoryImpl - sql query, select * from customers_table
+07:39:07.699 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:39:07.713 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:39:07.713 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:39:07.713 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:39:07.714 [main] INFO  c.b.repository.WalletRepositoryImpl - sql query, select * from accounts_table where account_to_customer_id = customer.getCustomerID()
+07:39:07.896 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:39:07.909 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:39:07.909 [main] INFO  com.ben.util.ResourceCloser - set closed
+07:39:07.909 [main] INFO  com.ben.util.ResourceCloser - statement closed
+07:39:17.414 [main] INFO  c.b.repository.WalletRepositoryImpl - sql query, insert into profile_table_accounts_table values(?, ?);
+07:39:17.626 [main] INFO  com.ben.util.ConnectionFactory - connection to db successful
+07:39:17.649 [main] INFO  com.ben.util.ResourceCloser - connection closed
+07:39:17.649 [main] INFO  com.ben.util.ResourceCloser - statement closed

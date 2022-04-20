@@ -631,12 +631,14 @@ public class AppUI {
 			System.out.println("how much do you want to put in this wallet?");
 			int amountToPutIn = scanner.nextInt();
 			
-			System.out.println("whats the password for this wallet?");
-			String newPW = scanner.nextLine();
+//			scanner.nextLine();
+			
+//			System.out.println("whats the password for this wallet?");
+			String newPW = "";
 			
 			walletRepositoryImpl.addWalletToCustomer(walletName, customerID, amountToPutIn, newPW);
 			
-			System.out.println("success");
+			System.out.println("successfully added wallet");
 			break;
 			
 		}
