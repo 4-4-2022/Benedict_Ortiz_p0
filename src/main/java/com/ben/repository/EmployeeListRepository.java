@@ -14,8 +14,8 @@ public class EmployeeListRepository {
 	public EmployeeListRepository() {
 		super();
 //		this.employeeList = employeeList;
-		this.employeeList.add(new Employee("worker1", "password"));
-		this.employeeList.add(new Employee("worker2", "password"));
+//		this.employeeList.add(new Employee("worker1", "password"));
+//		this.employeeList.add(new Employee("worker2", "password"));
 	}
 
 	public ArrayList<Employee> getEmployeeList() {

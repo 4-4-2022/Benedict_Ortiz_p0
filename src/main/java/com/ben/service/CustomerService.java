@@ -3,11 +3,23 @@ package com.ben.service;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ben.model.Customer;
+import com.ben.model.Profile;
 import com.ben.repository.CustomerRepository;
 import com.ben.repository.CustomerRepositoryImpl;
 
+/**
+ * this is where logging would also happen
+ * @author benor
+ *
+ */
 public class CustomerService {
+	
+	
+	private static final Logger logger = LoggerFactory.getLogger(CustomerService.class);
 
 	private CustomerRepository customerRepository;
 	
@@ -27,7 +39,7 @@ public class CustomerService {
 	
 
 	/**
-	 * this method will add a customer to the customer table in the db
+	 * this method will add a customer to the customer table in the db just passing the customer object to to customerRepository.create(Customer customer)
 	 * @param customer
 	 */
 	public void create(Customer customer) {
@@ -45,6 +57,10 @@ public class CustomerService {
 	 */
 	public ArrayList<Customer> save() {
 		return this.customerRepository.save();
+	}
+	
+	public ArrayList<Profile> showProfiles(Customer customer) {
+		return this.customerRepository.showProfiles(customer);
 	}
 
 }
