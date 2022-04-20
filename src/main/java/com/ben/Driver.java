@@ -617,6 +617,7 @@ public class Driver {
 				//gets userinput and saves it in customer object, loginCustomer
 				Customer loginCustomer = AppUI.getCustomerInformation(scanner);
 				//puts the query from db into an arraylist in customerListRepository
+				
 				customerListRepository.setCustomerList(customerService.save());
 				
 				loginCustomer = AppUI.customerFound(scanner, loginCustomer, customerService);
