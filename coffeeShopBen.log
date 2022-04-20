@@ -1433,3 +1433,4 @@
 12:58:43.214 [main] INFO  com.ben.util.ResourceCloser - set closed
 12:58:43.214 [main] INFO  com.ben.util.ResourceCloser - statement closed
 12:59:00.944 [main] INFO  com.ben.client.AppUI - the welcome page of customer
+19:38:06.667 [main] INFO  com.ben.client.AppUI - the welcome page of customer
