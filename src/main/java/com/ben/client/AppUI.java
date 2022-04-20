@@ -406,7 +406,7 @@ public class AppUI {
 					break;
 				} else if(employeeFound) {
 					
-					System.out.println("employee found " + e);
+//					System.out.println("employee found " + e);
 					employeeMainPage(e, scanner);
 					break;
 				}
@@ -431,7 +431,7 @@ public class AppUI {
 			System.out.println(pickedWallet + "is the wallet you have");
 			
 			for(Coffee c: coffeeList) {
-				System.out.println(c);
+				System.out.println(c.getCoffeeName() + " " + c.getCoffeeCost());
 			}
 			
 			
@@ -470,7 +470,7 @@ public class AppUI {
 			System.out.println("pick the wallet you want to transfer from");
 			
 			for(Wallet w: walletsOfCustomer) {
-				System.out.println(w);
+				System.out.println(w.getWalletName());
 			}
 			
 			String walletNameToTransferFrom = scanner.nextLine();
@@ -481,7 +481,7 @@ public class AppUI {
 			
 			System.out.println("To which wallet?");
 			for(Wallet w: walletsOfCustomer) {
-				System.out.println(w);
+				System.out.println(w.getWalletName());
 			}
 			String walletNameToTransferTo = scanner.nextLine();
 			
@@ -686,11 +686,11 @@ public class AppUI {
 		}
 	}
 	
-	public static void profileMainPage(String profileName, Scanner scanner, Customer customer, ArrayList<Wallet> walletsOfCustomer) {
+	public static void profileMainPage(String profileName, Scanner scanner, Customer customer) {
 		
 		System.out.println("the profile you picked is " + profileName);
 		
-//		ArrayList<Wallet> walletsOfCustomer = walletRepositoryImpl.getAccountsOfCustomer(customer);
+		ArrayList<Wallet> walletsOfCustomer = walletRepositoryImpl.getAccountsOfCustomer(customer);
 		
 		ArrayList<Wallet> walletsProfileHasAccessTo = walletRepositoryImpl.saveWallets(profileName);
 		
@@ -713,7 +713,8 @@ public class AppUI {
 		while (customerInProfileMainPage) {
 			System.out.println("welcome to your profile page, type 1 to enter the store or type 2 to pick which wallet to use from your profile, 3 to exit");
 			
-			System.out.println(customer.getWalletPicked().getWalletName() + " is your wallet picked");
+			//TODO program crashes if this sysout is hit
+//			System.out.println(customer.getWalletPicked().getWalletName() + " is your wallet picked");
 			
 			int mainPageAnswer = 0;
 			mainPageAnswer = handleUserSelectionNumberOnly(mainPageAnswer, scanner);
@@ -811,7 +812,7 @@ public class AppUI {
 			ArrayList<Profile> profiles = customerService.showProfiles(customer);
 			
 			for(Profile p: profiles) {
-				System.out.println(p);
+				System.out.println(p.getProfileName());
 			}
 			
 //			int mainPageAnswer = 0;
@@ -828,7 +829,7 @@ public class AppUI {
 			}
 			for(Profile p: profiles) {
 				if(p.getProfileName().equalsIgnoreCase(profileName)) {
-					profileMainPage(profileName, scanner, customer, walletsOfCustomer);
+					profileMainPage(profileName, scanner, customer);
 				}
 			}
 			
