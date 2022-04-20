@@ -18,11 +18,39 @@ import com.ben.util.ConnectionFactory;
 import com.ben.util.ResourceCloser;
 
 public class WalletRepositoryImpl {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(WalletRepositoryImpl.class);
 	
-public void removeWallet(Wallet wallet) {
+	public void addWalletToCustomer(String newWallet, int customerID, int newAmount, String newPW) {
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+//		final String SQL = "insert into profile_table_accounts_table values(?, ?);";
+		final String SQL = "insert into accounts_table (account_to_customer_id, account_username, account_funds, account_password) values (?, ?, ?, ?);";
 		
+		logger.info("sql query, insert into profile_table_accounts_table values(?, ?);");
+
+		try {
+			conn = ConnectionFactory.getConnection();
+			stmt = conn.prepareStatement(SQL);
+			stmt.setInt(1, customerID);
+			stmt.setString(2, newWallet);
+			stmt.setInt(3, newAmount);
+			stmt.setString(4, newPW);
+//			stmt.setBoolean(3, customer.isMainUser());
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ResourceCloser.closeConnection(conn);
+			ResourceCloser.closeStatement(stmt);
+		}
+
+	}
+
+	public void removeWallet(Wallet wallet) {
+
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
@@ -42,7 +70,7 @@ public void removeWallet(Wallet wallet) {
 			ResourceCloser.closeStatement(stmt);
 		}
 	}
-	
+
 	public ArrayList<Wallet> saveAllWalletsOfCustomers() {
 
 		ArrayList<Wallet> wallets = new ArrayList<Wallet>();
@@ -75,7 +103,7 @@ public void removeWallet(Wallet wallet) {
 
 		return wallets;
 	}
-	
+
 	public ArrayList<Wallet> saveAllWalletsOfProfiles() {
 
 		ArrayList<Wallet> wallets = new ArrayList<Wallet>();
@@ -108,9 +136,9 @@ public void removeWallet(Wallet wallet) {
 
 		return wallets;
 	}
-	
+
 	public void addWalletToProfile(String walletToUse, String profileToGiveAccess) {
-		
+
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
@@ -130,16 +158,17 @@ public void removeWallet(Wallet wallet) {
 			ResourceCloser.closeConnection(conn);
 			ResourceCloser.closeStatement(stmt);
 		}
-		
+
 	}
-	
+
 	public void removeFundsAdmin(String accountName, int amountToAdd) {
-		
+
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
 		final String SQL = "update accounts_table set account_funds = account_funds - ? where account_username = ? ";
-		logger.info("sql query, update accounts_table set account_funds = account_funds - ? where account_username = ? admin version");
+		logger.info(
+				"sql query, update accounts_table set account_funds = account_funds - ? where account_username = ? admin version");
 
 		try {
 			conn = ConnectionFactory.getConnection();
@@ -155,22 +184,21 @@ public void removeWallet(Wallet wallet) {
 			ResourceCloser.closeStatement(stmt);
 		}
 	}
-	
-	
+
 	public void addFundsAdmin(String accountName, int amountToAdd) {
-		
+
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
 		final String SQL = "update accounts_table set account_funds = account_funds + ? where account_username = ? ";
-		logger.info("sql query, update accounts_table set account_funds = account_funds + ? where account_username = ?, admin version ");
+		logger.info(
+				"sql query, update accounts_table set account_funds = account_funds + ? where account_username = ?, admin version ");
 
 		try {
 			conn = ConnectionFactory.getConnection();
 			stmt = conn.prepareStatement(SQL);
 			stmt.setInt(1, amountToAdd);
 			stmt.setString(2, accountName);
-			
 
 			stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -180,14 +208,15 @@ public void removeWallet(Wallet wallet) {
 			ResourceCloser.closeStatement(stmt);
 		}
 	}
-	
+
 	public void removeFunds(String accountName, int amountToAdd, Customer customer) {
-		
+
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
 		final String SQL = "update accounts_table set account_funds = account_funds - ? where account_username = ? ";
-		logger.info("sql query, update accounts_table set account_funds = account_funds - ? where account_username = ? ");
+		logger.info(
+				"sql query, update accounts_table set account_funds = account_funds - ? where account_username = ? ");
 
 		try {
 			conn = ConnectionFactory.getConnection();
@@ -203,22 +232,21 @@ public void removeWallet(Wallet wallet) {
 			ResourceCloser.closeStatement(stmt);
 		}
 	}
-	
-	
+
 	public void addFunds(String accountName, int amountToAdd, Customer customer) {
-		
+
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
 		final String SQL = "update accounts_table set account_funds = account_funds + ? where account_username = ? ";
-		logger.info("sql query, update accounts_table set account_funds = account_funds + ? where account_username = ? ");
+		logger.info(
+				"sql query, update accounts_table set account_funds = account_funds + ? where account_username = ? ");
 
 		try {
 			conn = ConnectionFactory.getConnection();
 			stmt = conn.prepareStatement(SQL);
 			stmt.setInt(1, amountToAdd);
 			stmt.setString(2, accountName);
-			
 
 			stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -228,16 +256,17 @@ public void removeWallet(Wallet wallet) {
 			ResourceCloser.closeStatement(stmt);
 		}
 	}
-	
-	public ArrayList<Wallet> getAccountsOfCustomer (Customer customer) {
-		
+
+	public ArrayList<Wallet> getAccountsOfCustomer(Customer customer) {
+
 		ArrayList<Wallet> wallets = new ArrayList<Wallet>();
 
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet set = null;
 
-		final String SQL = "select * from accounts_table where account_to_customer_id = " + "'" + customer.getCustomerID() + "'";
+		final String SQL = "select * from accounts_table where account_to_customer_id = " + "'"
+				+ customer.getCustomerID() + "'";
 		logger.info("sql query, select * from accounts_table where account_to_customer_id = customer.getCustomerID()");
 
 		try {
@@ -261,7 +290,7 @@ public void removeWallet(Wallet wallet) {
 
 		return wallets;
 	}
-	
+
 	public ArrayList<Wallet> saveWallets(String profileName) {
 
 		ArrayList<Wallet> wallets = new ArrayList<Wallet>();
@@ -270,7 +299,8 @@ public void removeWallet(Wallet wallet) {
 		Statement stmt = null;
 		ResultSet set = null;
 
-		final String SQL = "select * from profile_table_accounts_table where profile_username = " + "'" + profileName + "'";
+		final String SQL = "select * from profile_table_accounts_table where profile_username = " + "'" + profileName
+				+ "'";
 		logger.info("sql query, select * from profile_table_accounts_table where profile_username = profileName");
 
 		try {

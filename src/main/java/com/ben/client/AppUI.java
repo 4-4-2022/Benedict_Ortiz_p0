@@ -617,14 +617,40 @@ public class AppUI {
 		
 	}
 	
+	
+	public static void addWalletForCustomer(Scanner scanner, Customer customer) {
+		boolean customerAddWalletForCustomerPage = true;
+		while (customerAddWalletForCustomerPage) {
+			
+			int customerID = customer.getCustomerID();
+			
+			System.out.println("welcome to add the wallet for customer page");
+			System.out.println("what do you want to name this wallet?");
+			String walletName = scanner.nextLine();
+			
+			System.out.println("how much do you want to put in this wallet?");
+			int amountToPutIn = scanner.nextInt();
+			
+			System.out.println("whats the password for this wallet?");
+			String newPW = scanner.nextLine();
+			
+			walletRepositoryImpl.addWalletToCustomer(walletName, customerID, amountToPutIn, newPW);
+			
+			System.out.println("success");
+			break;
+			
+		}
+	}
+	
 	public static void walletsPage(Scanner scanner, Customer customer, ArrayList<Wallet> walletsOfCustomer) {
 		boolean customerInWalletPage = true;
 		while (customerInWalletPage) {
 
-			System.out.println("Welcome to the wallet page, type 1 to add/remove funds to a wallet, 2 to add profiles to a wallet, 3 to transfer funds between wallets, 4 to exit");
+			System.out.println("Welcome to the wallet page, type 1 to add/remove funds to a wallet, 2 to add profiles to a wallet, 3 to transfer funds between wallets, 4 to add a wallet for this customer , 5 to exit");
 //			ArrayList<Wallet> walletsOfCustomer = walletRepositoryImpl.getAccountsOfCustomer(customer);
+			System.out.println("Wallets of customer: ");
 			for(Wallet w: walletsOfCustomer) {
-				System.out.println(w);
+				System.out.println(w.getWalletName() + " " + w.getFunds());
 			}
 			
 			int mainPageAnswer = 0;
@@ -643,10 +669,12 @@ public class AppUI {
 				addProfilesToWallets(scanner, customer, walletsOfCustomer);
 				break;
 			case 3:
-				System.out.println("transfer funds between wallets");
 				transferFundsBetweenWallets(scanner, customer, walletsOfCustomer);
 				break;
 			case 4:
+				addWalletForCustomer(scanner, customer);
+				break;
+			case 5:
 				System.out.println("exit wallets");
 				customerInWalletPage = false;
 				break;
