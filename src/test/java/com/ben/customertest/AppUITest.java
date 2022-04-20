@@ -114,6 +114,7 @@ public class AppUITest {
 	public void test9() {
 		String actual = AppUI.changeToWhatString();
 		Assertions.assertEquals("change their name to what?", actual);
+		
 	}
 	
 	@Test
