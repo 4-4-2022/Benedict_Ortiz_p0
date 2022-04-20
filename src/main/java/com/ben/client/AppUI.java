@@ -470,7 +470,7 @@ public class AppUI {
 			System.out.println("pick the wallet you want to transfer from");
 			
 			for(Wallet w: walletsOfCustomer) {
-				System.out.println(w.getWalletName());
+				System.out.println(w.getWalletName() + " "  + w.getFunds());
 			}
 			
 			String walletNameToTransferFrom = scanner.nextLine();
@@ -481,7 +481,7 @@ public class AppUI {
 			
 			System.out.println("To which wallet?");
 			for(Wallet w: walletsOfCustomer) {
-				System.out.println(w.getWalletName());
+				System.out.println(w.getWalletName() + " "  + w.getFunds());
 			}
 			String walletNameToTransferTo = scanner.nextLine();
 			
@@ -503,7 +503,7 @@ public class AppUI {
 		boolean customerInAddProfilesToWalletsPage = true;
 		while (customerInAddProfilesToWalletsPage) {
 			for(Wallet w: walletsOfCustomer) {
-				System.out.println(w);
+				System.out.println(w.getWalletName());
 			}
 			System.out.println("pick the wallet you want give a profile access to");
 			
@@ -520,7 +520,7 @@ public class AppUI {
 			
 			ArrayList<Profile> profiles = customerService.showProfiles(customer);
 			for(Profile p: profiles) {
-				System.out.println(p);
+				System.out.println(p.getProfileName());
 			}
 			
 			System.out.println("which profile do you want to give access to this wallet?");
